@@ -5,7 +5,6 @@ signal2 = 'bvwbjplbgvbhsrlpgdmjqwftvncz' #6 - 23
 signal3 = 'nppdvjthqldpwncqszvftbrmjlhg' #5 - 23
 signal4 = 'nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg' #10 - 29
 signal5 = 'zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw' #11 - 26
-        #  '01234567890123'
 
 def find_marker(str):
     l, r = 0, 0
