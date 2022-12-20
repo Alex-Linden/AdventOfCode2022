@@ -107,29 +107,66 @@ def is_sorted(lst1, lst2):
 pair = 1
 out = []
 i = 0
-part_2 = []
+# part_2 = []
 while i in range(len(parsed_signal)):
     # print(pair)
     if is_sorted(parsed_signal[i], parsed_signal[i + 1]):
         out.append(pair)
-        part_2.append(parsed_signal[i])
-        part_2.append(parsed_signal[i + 1])
-    else:
-        print("pair =", pair, "and i =", i)
-        print("left =", parsed_signal[i])
-        print("right =", parsed_signal[i + 1])
+        # part_2.append(parsed_signal[i])
+        # part_2.append(parsed_signal[i + 1])
+    # else:
+        # print("pair =", pair, "and i =", i)
+        # print("left =", parsed_signal[i])
+        # print("right =", parsed_signal[i + 1])
     pair += 1
     i += 2
 
 # print(out)
 
 print("part 1 =",sum(out))
-
+print(len(parsed_signal))
 #part 2 is merge sort
 decoder1 = [[2]]
 decoder2 = [[6]]
-part_2.append(decoder1)
-part_2.append(decoder2)
+parsed_signal.append(decoder1)
+parsed_signal.append(decoder2)
 
 
-def merge_sort():
+def merge(lst1, lst2):
+    l, r = 0, 0
+    out = []
+
+    while l in range(len(lst1)) and r in range(len(lst2)):
+        if is_sorted(lst1[l], lst2[r]):
+            out.append(lst1[l])
+            l += 1
+        else:
+            out.append(lst2[r])
+            r += 1
+
+    out += lst1[l:] + lst2[r:]
+
+    return out
+
+def merge_sort(lst):
+    lst_len = len(lst)
+
+    if lst_len == 1:
+        return lst
+
+    mid = lst_len // 2
+
+    left = merge_sort(lst[:mid])
+    right = merge_sort(lst[mid:])
+
+    return merge(left, right)
+
+parsed_signal = merge_sort(parsed_signal)
+
+x = parsed_signal.index(decoder1)
+y = parsed_signal.index(decoder2)
+
+print(len(parsed_signal))
+print(x, y)
+
+print("part2 =", (x + 1) * (y + 1))
