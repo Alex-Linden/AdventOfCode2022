@@ -33,7 +33,43 @@ height = abs(y_min) + abs(y_max)
 
 row = [0,1,1,0]
 print(len(row) - sum(row))
-# class BeaconZone:
-#     def __init__(self, scan) -> None:
-#         self.grid = self.make_grid()
-#         self.scan = scan
+
+class BeaconZone:
+    def __init__(self, scan, width, height, x_adj, y_adj):
+        self.grid = self.make_grid(width, height)
+        self.scan = scan
+        self.x_adj = x_adj
+        self.y_adj = y_adj
+
+    def __repr__(self):
+        return f"{self.grid}"
+
+    def make_grid(self, width, height):
+        grid = []
+
+        for i in range(height):
+            row = []
+            for j in range(width):
+                row.append(0)
+            grid.append(row)
+
+        return grid
+
+    def place_sensors_and_beacons(self):
+        for sb in self.scan:
+            self.grid[sb[1]][sb[0]] = 1
+            self.grid[sb[3]][sb[2]] = 2
+
+    def find_unavailable_spaces(self):
+
+
+
+
+
+# row10 = "..####B######################.."
+# print(len(row10))
+# unav = 0
+# for spc in row10:
+#     if spc != ".":
+#         unav += 1
+# print(unav)
